@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 26.458334 26.458332"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   sodipodi:docname="sunandmoon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="4.3893395"
+     inkscape:cx="55.817053"
+     inkscape:cy="38.502376"
+     inkscape:window-width="1920"
+     inkscape:window-height="1007"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#000000;stroke-width:0.26448"
+       id="path388"
+       cx="13.229166"
+       cy="13.229166"
+       r="5.2916665" />
+    <path
+       id="path396"
+       style="fill:#000000;stroke-width:0.314086"
+       d="M 11.974463,1.3725269 9.5379187,4.9542202 5.2451576,4.3744107 5.3789997,8.7043789 1.5652788,10.758516 l 2.653069,3.424081 -1.877405,3.903637 4.1589185,1.210779 0.7751472,4.261755 4.0767535,-1.465027 3.132109,2.992065 2.436543,-3.581692 4.292761,0.579809 -0.133842,-4.329968 3.813721,-2.054138 -2.653068,-3.424081 1.877405,-3.9036365 -4.158919,-1.2107788 -0.775147,-4.2617553 -4.076754,1.4650268 z m 1.254704,5.5743367 A 6.2821822,6.2821822 0 0 1 19.51147,13.229167 6.2821822,6.2821822 0 0 1 13.229167,19.51147 6.2821822,6.2821822 0 0 1 6.9468626,13.229166 6.2821822,6.2821822 0 0 1 13.229167,6.9468636 Z" />
+    <path
+       id="path453"
+       style="opacity:1;vector-effect:none;fill:#ffffff;stroke-width:0.216371;stop-color:#000000;stop-opacity:1"
+       d="M 17.04082 5.1356038 A 8.8614129 10.006458 0 0 1 18.475875 10.584883 A 8.8614129 10.006458 0 0 1 9.6149169 20.591508 A 8.8614129 10.006458 0 0 1 7.8760049 20.38997 A 8.9466801 8.9466801 0 0 0 13.229166 22.175907 A 8.9466801 8.9466801 0 0 0 22.175907 13.229166 A 8.9466801 8.9466801 0 0 0 17.04082 5.1356038 z " />
+  </g>
+</svg>
