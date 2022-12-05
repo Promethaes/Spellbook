@@ -12,20 +12,20 @@
   "activationEvents": [
     "onCommand:spellbook.ellie",
     "onCommand:spellbook.time",
-    "onView:spellbookView"
+    "onView:projectView"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "viewsWelcome": [
       {
-        "view": "spellbookView",
+        "view": "projectView",
         "contents": "No Spells Found.\n[Add Spell](command:spellbook.ellie)"
       }
     ],
     "views": {
       "book": [
         {
-          "id": "spellbookView",
+          "id": "projectView",
           "name": "Spells",
           "icon": "media/spellbook.svg",
           "contextualTitle": "Spells"
@@ -37,6 +37,11 @@
         {
           "command": "spellbook.ellie",
           "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "spellbook.openWithCode"
         }
       ]
     },
@@ -59,9 +64,14 @@
         }
       },
       {
+        "command": "spellbook.openWithCode",
+        "title": "Open With Code"
+      },
+      {
         "command": "spellbook.time",
         "title": "Time"
       }
+      
     ]
   },
   "scripts": {

@@ -21,12 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   context.subscriptions.push(disposable);
-  let fileView = new fileExplorer.FileSystemProvider();
-
-  fileView.printDirectory("D:\\Projects\\");
-  vscode.window.createTreeView("spellbookView", {
-    treeDataProvider: fileView,
-  });
+  let fileView = new fileExplorer.FileExplorer(context,"D:\\Projects\\Repos");
 }
 
 

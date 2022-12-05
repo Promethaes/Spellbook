@@ -4,6 +4,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
+import { ChildProcess, spawn } from 'child_process';
+import { Console } from 'console';
 
 //#region Utilities
 
@@ -157,8 +159,12 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 
 	private _onDidChangeFile: vscode.EventEmitter<vscode.FileChangeEvent[]>;
 
-	constructor() {
+	private _chosenDirectory: string;
+	constructor(chosenDirectory : string) {
+		this._chosenDirectory = chosenDirectory;
 		this._onDidChangeFile = new vscode.EventEmitter<vscode.FileChangeEvent[]>();
+
+		this.printDirectory(chosenDirectory);
 	}
 
 	get onDidChangeFile(): vscode.Event<vscode.FileChangeEvent[]> {
@@ -271,18 +277,17 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 			const children = await this.readDirectory(element.uri);
 			return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(element.uri.fsPath, name)), type }));
 		}
-
-		const workspaceFolder = (vscode.workspace.workspaceFolders ?? []).filter(folder => folder.uri.scheme === 'file')[0];
-        const mystuff = vscode.Uri.file("D:\\Projects\\");
-        if (workspaceFolder) {
-			const children = await this.readDirectory(mystuff);
+		
+        const chosenDirURI = vscode.Uri.file(this._chosenDirectory);
+        if (chosenDirURI) {
+			const children = await this.readDirectory(chosenDirURI);
 			children.sort((a, b) => {
 				if (a[1] === b[1]) {
 					return a[0].localeCompare(b[0]);
 				}
 				return a[1] === vscode.FileType.Directory ? -1 : 1;
 			});
-			return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(mystuff.fsPath, name)), type }));
+			return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(chosenDirURI.fsPath, name)), type }));
 		}
 
 		return [];
@@ -298,19 +303,28 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 	}
 
     async printDirectory(directory: string){
+		console.log(vscode.Uri.file(directory));
+		
         let val = await this.readDirectory(vscode.Uri.file(directory));
         val.forEach(x => console.log(x[0]));
     }
 }
 
 export class FileExplorer {
-	constructor(context: vscode.ExtensionContext) {
-		const treeDataProvider = new FileSystemProvider();
-		context.subscriptions.push(vscode.window.createTreeView('fileExplorer', { treeDataProvider }));
-		vscode.commands.registerCommand('fileExplorer.openFile', (resource) => this.openResource(resource));
-	}
+	constructor(context: vscode.ExtensionContext,chosenDir: string) {
+		const treeDataProvider = new FileSystemProvider(chosenDir);
+		context.subscriptions.push(vscode.window.createTreeView('projectView', { treeDataProvider }));
+		vscode.commands.registerCommand('spellbook.openWithCode', async (resource: vscode.Uri) => {
+			console.log(resource);	
+			await this.openResource(resource);
+		});
+	}	
 
-	private openResource(resource: vscode.Uri): void {
+	private async openResource(resource: vscode.Uri): Promise<void> {
+		//spawn(`code ${resource.fsPath}`);
+		if(!(resource as vscode.Uri).path){
+			console.log("why");
+		}
 		vscode.window.showTextDocument(resource);
 	}
 }
