@@ -273,15 +273,16 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 		}
 
 		const workspaceFolder = (vscode.workspace.workspaceFolders ?? []).filter(folder => folder.uri.scheme === 'file')[0];
-		if (workspaceFolder) {
-			const children = await this.readDirectory(workspaceFolder.uri);
+        const mystuff = vscode.Uri.file("D:\\Projects\\");
+        if (workspaceFolder) {
+			const children = await this.readDirectory(mystuff);
 			children.sort((a, b) => {
 				if (a[1] === b[1]) {
 					return a[0].localeCompare(b[0]);
 				}
 				return a[1] === vscode.FileType.Directory ? -1 : 1;
 			});
-			return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(workspaceFolder.uri.fsPath, name)), type }));
+			return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(mystuff.fsPath, name)), type }));
 		}
 
 		return [];
@@ -295,6 +296,11 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
 		}
 		return treeItem;
 	}
+
+    async printDirectory(directory: string){
+        let val = await this.readDirectory(vscode.Uri.file(directory));
+        val.forEach(x => console.log(x[0]));
+    }
 }
 
 export class FileExplorer {

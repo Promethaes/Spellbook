@@ -23,16 +23,12 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
   let fileView = new fileExplorer.FileSystemProvider();
 
-  printDirectory(fileView,"D:\\Projects\\");
+  fileView.printDirectory("D:\\Projects\\");
   vscode.window.createTreeView("spellbookView", {
     treeDataProvider: fileView,
   });
 }
 
-export async function printDirectory(p: fileExplorer.FileSystemProvider, directory: string) {
-  let val = await p.readDirectory(vscode.Uri.file(directory));
-  val.forEach(x => console.log(x[0]));
-}
 
 // This method is called when your extension is deactivated
 export function deactivate() {}
