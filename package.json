@@ -16,29 +16,47 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsWelcome": [
+      {
+        "view": "spellbookView",
+        "contents": "No Spells Found.\n[Add Spell](command:spellbook.ellie)"
+      }
+    ],
     "views": {
-      "spellbook":[
+      "book": [
         {
-          "id": "spellbook",
-          "name": "Spellbook Explorer",
-          "icon": "media/sunandmoon.svg",
-          "contextualTitle": "Spellbook muthafucka"
+          "id": "spellbookView",
+          "name": "Spells",
+          "icon": "media/spellbook.svg",
+          "contextualTitle": "Spells"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "spellbook.ellie",
+          "group": "navigation"
         }
       ]
     },
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "spellbook",
+          "id": "book",
           "title": "Spellbook",
-          "icon": "media/sunandmoon.svg"
+          "icon": "media/spellbook.svg"
         }
       ]
     },
     "commands": [
       {
         "command": "spellbook.ellie",
-        "title": "Ellie"
+        "title": "Ellie",
+        "icon": {
+          "light": "media/book.svg",
+          "dark": "media/book.svg"
+        }
       },
       {
         "command": "spellbook.time",
@@ -55,16 +73,18 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.73.0",
     "@types/glob": "^8.0.0",
+    "@types/mkdirp": "^1.0.2",
     "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
+    "@types/rimraf": "^3.0.2",
+    "@types/vscode": "^1.73.0",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
+    "@vscode/test-electron": "^2.2.0",
     "eslint": "^8.26.0",
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
-    "typescript": "^4.8.4",
-    "@vscode/test-electron": "^2.2.0"
+    "typescript": "^4.8.4"
   }
 }
